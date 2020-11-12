@@ -1,6 +1,6 @@
 {
   "name": "skimmiachallenge",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Test that counts from 1 to 100",
   "main": "index.js",
   "scripts": {
