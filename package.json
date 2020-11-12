@@ -1,0 +1,20 @@
+{
+  "name": "skimmiachallenge",
+  "version": "0.0.1",
+  "description": "Test that counts from 1 to 100",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --expose-gc index",
+    "test": "npx nodemon --exec \"mocha\" --legacy-watch -e js,vbs,json,sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amazingjosue/skimmiaChallenge.git"
+  },
+  "author": "Josue Ramirez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amazingjosue/skimmiaChallenge/issues"
+  },
+  "homepage": "https://github.com/amazingjosue/skimmiaChallenge#readme"
+}
