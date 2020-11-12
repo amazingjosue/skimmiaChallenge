@@ -3,7 +3,7 @@ const logger = require('./config/config');
 
 logger({
     colors: ["\x1b[32m", "\x1b[31m"],
-    msName: "users-ms"
+    msName: "skimmiaChallenge"
 });
 
 /**
