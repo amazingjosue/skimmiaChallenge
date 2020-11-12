@@ -1,4 +1,5 @@
 'use strict';
+const config = require('./config/config');
 const logger = require('./config/config');
 
 logger({
@@ -27,17 +28,37 @@ const multipleBoth = function (numero) {
 }
 
 
-let cuenta = [];
-for (let i = 1; i <= 100; i++) {
-    cuenta.push(i);
-};
-const texto = ["Music", "TI", "Musical"];
-cuenta = cuenta.map(numero => {
-    if (numero % 3 == 0 || numero % 5 == 0) {
-        return texto[multipleFive(numero) + multipleBoth(numero)]
-    }
-    return numero;
-});
+const counting = function () {
+    try {
+        let count = [];
+        for (let i = 1; i <= 100; i++) {
+            count.push(i);
+        };
+        const texto = ["Music", "TI", "Musical"];
+        count = count.map(numero => {
+            if (numero % 3 == 0 || numero % 5 == 0) {
+                return texto[multipleFive(numero) + multipleBoth(numero)]
+            }
+            return numero;
+        });
 
-cuenta.forEach(number => console.log(number));
-console.log(cuenta)
+        count.forEach(number => console.log(number));
+        console.log(count)
+
+        return {
+            count,
+            success: true
+        };
+
+    } catch (error) {
+        console.log(error)
+        return {
+            success: false,
+            error: error.message || error
+        }
+    }
+};
+
+counting();
+
+module.exports = counting;
