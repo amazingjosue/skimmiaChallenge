@@ -4,8 +4,12 @@
   "description": "Test that counts from 1 to 100",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --legacy-watch",
     "start": "node --expose-gc index",
     "test": "npx nodemon --exec \"mocha\" --legacy-watch -e js,vbs,json,sql"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   },
   "repository": {
     "type": "git",
