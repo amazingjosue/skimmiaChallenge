@@ -1,8 +1,11 @@
 const writeFile = require('./writeFile');
 
+/**
+ * @description Function that create configs for the logs in the console
+ */
 const config = function ({
     colors,
-    msName
+    serviceName
 }) {
     const LOG_PREFIX = new Date().getDate() + '-' + new Date().getMonth() + '-' +
         new Date().getFullYear() + ' ' + new Date().getHours() + ':' +
@@ -17,7 +20,7 @@ const config = function ({
         args.unshift(`${LOG_PREFIX} [${process.pid}] [LOG] : `);
         args.unshift(colors[0]);
         log.apply(console, args);
-        writeFile(args, msName);
+        writeFile(args, serviceName);
     }
 
     console.error = function () {
@@ -25,15 +28,17 @@ const config = function ({
         args.unshift(`${LOG_PREFIX} [${process.pid}] [ERROR] : `);
         args.unshift(colors[1]);
         error.apply(console, args);
-        writeFile(args, msName);
+        writeFile(args, serviceName);
     }
 
     console.info = function () {
         var args = Array.from(arguments);
         args.unshift(colors[0]);
         info.apply(console, args);
-        writeFile(args, msName);
+        writeFile(args, serviceName);
     }
 }
-
-module.exports = config;
+config({
+    colors: ["\x1b[32m", "\x1b[31m"],
+    serviceName: "skimmiaChallenge"
+});

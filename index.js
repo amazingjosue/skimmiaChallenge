@@ -1,49 +1,30 @@
 'use strict';
-const config = require('./config/config');
-const logger = require('./config/config');
 
-logger({
-    colors: ["\x1b[32m", "\x1b[31m"],
-    msName: "skimmiaChallenge"
-});
-
-/**
- * @description  If this function get a multiple of 5, will return a ONE otherwise will return a CERO
- * @param {Number} numero   The number to evaluete the condition
- * 
- * @returns     1 || 0
- */
-const multipleFive = function (numero) {
-    return Number(numero % 3 >= 1 && numero % 5 == 0);
-}
+require('./utiles/config');
+const {
+    multipleFive,
+    multipleBoth
+} = require('./evaluationNumber')
 
 /**
- * @description  If this function get a multiple of 5 and 3, will return a TWO otherwise will return a CERO
- * @param {Number} numero  The number to evalate the condition
+ * @description     This function create an array of numbers from 1 to 100 and for multiples of 3 and 5 the number will be replaced for a String
  * 
- * @returns     2 || 0
+ * @returns {Array} This will be an array of 100 elements
  */
-const multipleBoth = function (numero) {
-    return Number(numero % 3 == 0 && numero % 5 == 0) * 2;
-}
-
-
-const counting = function () {
+const multipleFiveThree = function () {
     try {
-        let count = [];
-        for (let i = 1; i <= 100; i++) {
-            count.push(i);
-        };
-        const texto = ["Music", "TI", "Musical"];
-        count = count.map(numero => {
-            if (numero % 3 == 0 || numero % 5 == 0) {
-                return texto[multipleFive(numero) + multipleBoth(numero)]
-            }
-            return numero;
-        });
+        const textOptions = ["Music", "TI", "Musical"];
+        const count = [];
 
-        count.forEach(number => console.log(number));
-        console.log(count)
+        for (let num = 1; num <= 100; num++) {
+            if (num % 3 == 0 || num % 5 == 0) {
+                count.push(textOptions[multipleFive(num) + multipleBoth(num)]);
+                console.log(`Position ${num}: `, count[num - 1]);
+                continue;
+            }
+            count.push(num);
+            console.log(`Position ${num}: `, count[num - 1]);
+        };
 
         return {
             count,
@@ -51,14 +32,13 @@ const counting = function () {
         };
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return {
             success: false,
             error: error.message || error
-        }
-    }
+        };
+    };
 };
 
-counting();
-
-module.exports = counting;
+multipleFiveThree();
+module.exports = { multipleFiveThree }
